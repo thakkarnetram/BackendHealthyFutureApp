@@ -41,4 +41,9 @@ public class BackendApplication {
 			return "OTP is invalid";
 		}
 	}
+
+	@GetMapping("/cb/status")
+	public boolean checkStatus() {
+		return true;
+	}
 }
