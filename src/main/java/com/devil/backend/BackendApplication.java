@@ -19,6 +19,11 @@ public class BackendApplication {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 
+	@GetMapping("/")
+	public String home(){
+		return "Home of OTP";
+	}
+
 	@GetMapping("/cb/get-otp")
 	public String getOtp(){
 		// Call your OTP service method to generate and store OTP
