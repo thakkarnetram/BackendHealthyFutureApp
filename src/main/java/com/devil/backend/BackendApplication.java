@@ -32,7 +32,7 @@ public class BackendApplication {
 	@GetMapping("/cb/get-otp")
 	public ResponseEntity<String>getOtp(){
 		// Call your OTP service method to generate and store OTP
-		String email = "thakkarnetram10@outlook.com";
+		String email = "it@rymo.in";
 		String otp = otpService.generateOtp();
 		otpService.storeOtp(email, otp);
 		// Call your email sending logic
@@ -42,7 +42,7 @@ public class BackendApplication {
 
 	@GetMapping("/cb/verify-otp")
 	public ResponseEntity<String> verifyOtp(@RequestParam("otp") String otp) {
-		String email = "thakkarnetram10@outlook.com";
+		String email = "it@rymo.in";
 		boolean isValid = otpService.verifyOtp(email, otp);
 
 		if (isValid) {

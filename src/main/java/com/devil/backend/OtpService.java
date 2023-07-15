@@ -35,7 +35,7 @@ public class OtpService {
     // saving data
     public void storeOtp(String email,String otp){
         UserModal userModal= new UserModal();
-        userModal.setEmailId("thakkarnetram10@outlook.com");
+        userModal.setEmailId("it@rymo.in");
         userModal.setOtp(otp);
         userModalRepository.save(userModal);
     }
@@ -62,7 +62,7 @@ public class OtpService {
     // Sending otp
     public void sendOtpByEmail(String email,String otp){
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo("thakkarnetram10@outlook.com");
+        mailMessage.setTo("it@rymo.in");
         mailMessage.setSubject("OTP Verification Code");
         mailMessage.setText("Here is your Verification Code: " + otp + "\n" +
                 "OTP is valid for 5 minutes. Do not share the OTP.");

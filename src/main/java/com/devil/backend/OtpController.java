@@ -20,7 +20,7 @@ public class OtpController {
 
     @PostMapping("/cb/get-otp")
     public ResponseEntity<String>generateOtp(@RequestBody Map<String,String> request){
-        String email = "thakkarnetram10@outlook.com";
+        String email = "it@rymo.in";
         String otp = otpService.generateOtp();
         otpService.storeOtp(email,otp);
         otpService.sendOtpByEmail(email,otp);
@@ -30,7 +30,7 @@ public class OtpController {
     // Verification Endpoint
     @PostMapping("/cb/verify-otp")
     public ResponseEntity<String> verifyOtp(@RequestParam("otp") String otp) {
-        String email = "thakkarnetram10@outlook.com";
+        String email = "it@rymo.in";
         if (otpService.verifyOtp(email, otp)) {
             return ResponseEntity.ok("OTP verified successfully");
         } else {
