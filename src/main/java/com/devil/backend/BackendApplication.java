@@ -2,11 +2,16 @@ package com.devil.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Import;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
+@Import(CorsConfig.class)
 @RestController
 public class BackendApplication {
 
@@ -21,29 +26,29 @@ public class BackendApplication {
 
 	@GetMapping("/")
 	public String home(){
-		return "Home of OTP";
+		return "Home of OTP New";
 	}
 
 	@GetMapping("/cb/get-otp")
-	public String getOtp(){
+	public ResponseEntity<String>getOtp(){
 		// Call your OTP service method to generate and store OTP
 		String email = "thakkarnetram10@outlook.com";
 		String otp = otpService.generateOtp();
 		otpService.storeOtp(email, otp);
 		// Call your email sending logic
 		otpService.sendOtpByEmail(email, otp);
-		return "OTP sent to : " + email + otp;
+		return ResponseEntity.ok("OTP Sent to  " + email + " your otp is " + otp);
 	}
 
 	@GetMapping("/cb/verify-otp")
-	public String verifyOtp(@RequestParam("otp") String otp) {
+	public ResponseEntity<String> verifyOtp(@RequestParam("otp") String otp) {
 		String email = "thakkarnetram10@outlook.com";
 		boolean isValid = otpService.verifyOtp(email, otp);
 
 		if (isValid) {
-			return "OTP is valid";
+			return ResponseEntity.ok("OTP is valid");
 		} else {
-			return "OTP is invalid";
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("OTP is invalid");
 		}
 	}
 

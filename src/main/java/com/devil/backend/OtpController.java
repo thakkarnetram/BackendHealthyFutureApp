@@ -17,6 +17,7 @@ public class OtpController {
     }
 
     // Generate Endpoint
+
     @PostMapping("/cb/get-otp")
     public ResponseEntity<String>generateOtp(@RequestBody Map<String,String> request){
         String email = "thakkarnetram10@outlook.com";
